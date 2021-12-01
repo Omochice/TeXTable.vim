@@ -1,0 +1,53 @@
+*TeXTable*		Convert csv-like text to TeX's table.
+
+License: MIT license
+
+CONTENTS *TeXTable-contents*
+Introduction	|TeXTable-introduction|
+Install	|TeXTable-install|
+Usage	|TeXTable-usage|
+Commands	|TeXTable-commands|
+Variables	|TeXTable-variables|
+
+==============================================================================
+INTRODUCTION		*TeXTable-introduction*
+
+==============================================================================
+INSTALL		*TeXTable-install*
+
+Use your favorite plugin manager.
+
+>
+        Plug 'Omochice/TeXTable.vim'
+
+        call dein#add('Omochice/TeXTable.vim')
+<
+
+==============================================================================
+USAGE		*TeXTable-usage* *:TeXTable*
+
+Convert selected text to table
+>
+        :'<,'>TeXTable
+<
+
+If you need 'tabular' only,
+>
+        :'<,'>TeXTable!
+<
+
+If separator is not `,`. (example `.` etc)
+>
+        :'<,'>TeXTable .
+<
+Escape separator automatically, if it used as meta character in RegEX.
+
+
+==============================================================================
+VARIABLES		*TeXTable-variables*
+
+`g:textable_algin`      *g:textable_algin*
+        The character used as aligner in `tabular`.
+        Default: 'l'
+
+vim:tw=78:fo=tcq2mM:ts=4:ft=help:norl:noet:fdm=marker:fen:
