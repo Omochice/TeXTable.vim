@@ -58,7 +58,7 @@ NOTE: The length of columns in `tabular` fit as same as longest one.
 
 ## Variables
 
-- `g:textable_algin`
+- `g:textable_align`
 
     The character used as aligner in `tabular`.
     Default: `'l'`
