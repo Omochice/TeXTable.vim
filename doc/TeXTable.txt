@@ -1,4 +1,4 @@
-*TeXTable*		Convert csv-like text to TeX's table.
+*TeXTable*		Convert CSV-like text to TeX's table.
 
 License: MIT license
 
@@ -41,6 +41,8 @@ If separator is not `,`. (example `.` etc)
         :'<,'>TeXTable .
 <
 Escape separator automatically, if it used as meta character in RegEX.
+
+NOTE: The length of columns in `tabular` fit as same as longest one.
 
 
 ==============================================================================
