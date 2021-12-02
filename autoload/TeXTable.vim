@@ -29,9 +29,8 @@ function! TeXTable#makeTeXTable(bang, line1, line2, ...) abort
   let l:sep = get(a:000, 0, ',')
   let l:sep = s:need_escape(l:sep) ? '\' . l:sep : l:sep
   call map(l:contents, {_, v -> split(v, '\s*' . l:sep . '\s*', v:true)})
-  " let l:n_columns = len(l:contents[0])
+  " Fit length to longest one
   let l:n_columns = max(map(copy(l:contents), {_, v -> len(v)}))
-  " Fit to header's length
   call map(l:contents, {_, v -> v + repeat([''], l:n_columns - len(v))})
   " Construct rows
   call map(l:contents, {_, v -> join(v, ' & ') . ' \\ \hline'})
