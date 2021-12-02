@@ -20,6 +20,8 @@ Use your favorite plugin manager.
 
 ## Usage
 
+![sample-movie-to-use](https://i.gyazo.com/78882ae7320ac9f6233ee7e1e723a288.gif)
+
 ```tex
 1,2,3
 a,b,c
