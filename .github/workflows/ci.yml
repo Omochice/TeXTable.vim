@@ -17,7 +17,10 @@ jobs:
         version: ["nightly", "stable"]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout this
+        uses: actions/checkout@v2
+      - name: checkout themis
+        uses: actions/checkout@v2
         with:
           repository: thinca/vim-themis
           path: vim-themis
@@ -31,5 +34,4 @@ jobs:
         env:
           THEMIS_VIM: ${{ steps.vim.outputs.executable }}
         run: |
-          ls ./
-          # ./vim-themis/bin/themis ./test/TeXTable/TeXTable.vim
+          ./vim-themis/bin/themis -r ./test
