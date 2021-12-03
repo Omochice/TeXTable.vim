@@ -1,3 +1,5 @@
+[![CI](https://github.com/Omochice/TeXTable.vim/actions/workflows/ci.yml/badge.svg)](https://github.com/Omochice/TeXTable.vim/actions/workflows/ci.yml)
+
 # TeXTable.vim
 
 The Vim/Neovim plugin that convert CSV-like text to TeX's table.
