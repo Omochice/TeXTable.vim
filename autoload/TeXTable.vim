@@ -2,7 +2,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! s:need_escape(char) abort
-  let s:chars_need_escape = [
+  let l:chars_need_escape = [
         \ '\',
         \ '+',
         \ '.',
@@ -18,7 +18,7 @@ function! s:need_escape(char) abort
         \ '$',
         \ '|',
         \ ]
-  return get(s:chars_need_escape, a:char) != -1
+  return index(l:chars_need_escape, a:char) != -1
 endfunction
 
 function! s:csv_to_table(text, sep) abort
