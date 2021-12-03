@@ -47,7 +47,7 @@ endfunction
 function! s:add_tabular(contents) abort
   let l:n_columns = len(split(a:contents[0], '&'))
   " Construct aligner
-  let l:aligner = join(repeat([(exists('g:textable_algin') ? g:textable_algin : 'l')], l:n_columns), '|')
+  let l:aligner = join(repeat([(exists('g:textable_align') ? g:textable_align : 'l')], l:n_columns), '|')
   let l:tabular = [
         \ "\\begin{tabular}{" . l:aligner . '}',
         \ "\\hline",
