@@ -40,7 +40,7 @@ function! s:add_table(contents) abort
         \ "\t\\label{table:}",
         \ "\\end{table}",
         \ ]
-  call extend(l:table, map(a:contents, {_, v -> "\t" . v}), 2)
+  call extend(l:table, map(a:contents, {_, v -> "\t" . v}), 3)
   return l:table
 endfunction
 
