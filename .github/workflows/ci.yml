@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths-ignore:
+      - "README.md"
+      - "doc/TeXTable.txt"
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        neovim: [false, true]
+        version: ["nightly", "stable"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: thinca/vim-themis
+          path: vim-themis
+      - name: Setup vim
+        id: vim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: ${{ matrix.neovim }}
+          version: ${{ matrix.version }}
+      - name: Run unit tests with themis.vim
+        env:
+          THEMIS_VIM: ${{ steps.vim.outputs.executable }}
+        run: |
+          ./vim-themis/bin/themis -r
