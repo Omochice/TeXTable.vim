@@ -1,8 +1,8 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! TeXTable#_need_escape(char) abort
-  let l:chars_need_escape = [
+function! s:need_escape(char) abort
+  let s:chars_need_escape = [
         \ '\',
         \ '+',
         \ '.',
@@ -18,12 +18,12 @@ function! TeXTable#_need_escape(char) abort
         \ '$',
         \ '|',
         \ ]
-  return get(l:chars_need_escape, a:char) != -1
+  return get(s:chars_need_escape, a:char) != -1
 endfunction
 
-function! TeXTable#_csv_to_table(text, sep) abort
+function! s:csv_to_table(text, sep) abort
   " Split each with separator
-  let l:separator = '\s*' . (TeXTable#_need_escape(a:sep) ? '\' . a:sep : a:sep) . '\s*'
+  let l:separator = '\s*' . (s:need_escape(a:sep) ? '\' . a:sep : a:sep) . '\s*'
   let l:table = map(a:text, {_,v -> split(v, l:separator, v:true)})
   " Fit length to longest one
   let l:n_columns = max(map(copy(l:table), {_, v -> len(v)}))
@@ -32,7 +32,7 @@ function! TeXTable#_csv_to_table(text, sep) abort
   return l:table
 endfunction
 
-function! TeXTable#_add_table(contents) abort
+function! s:add_table(contents) abort
   let l:table = [
         \ "\\begin{table}[htbp]",
         \ "\t\\centering",
@@ -44,7 +44,7 @@ function! TeXTable#_add_table(contents) abort
   return l:table
 endfunction
 
-function! TeXTable#_add_tabular(contents) abort
+function! s:add_tabular(contents) abort
   let l:n_columns = len(split(a:contents[0], '&'))
   " Construct aligner
   let l:aligner = join(repeat([(exists('g:textable_algin') ? g:textable_algin : 'l')], l:n_columns), '|')
@@ -64,11 +64,11 @@ function! TeXTable#makeTeXTable(bang, line1, line2, ...) abort
   let l:contents = map(range(a:line1, a:line2), {_, v -> getline(v)})
   let l:sep = get(a:000, 0, ',')
   " Convert csv to tex table
-  let l:contents = TeXTable#_csv_to_table(l:contents, l:sep)
+  let l:contents = s:csv_to_table(l:contents, l:sep)
   " If bang then add only tabular
   let l:rows = a:bang =~ '!' ?
-        \ TeXTable#_add_tabular(l:contents) :
-        \ TeXTable#_add_table(TeXTable#_add_tabular(l:contents))
+        \ s:add_tabular(l:contents) :
+        \ s:add_table(s:add_tabular(l:contents))
   " Delete original text into black hole register
   silent execute printf('%d,%ddelete _', a:line1, a:line2)
   " Output Rows
