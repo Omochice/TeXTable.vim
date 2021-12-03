@@ -31,4 +31,4 @@ jobs:
         env:
           THEMIS_VIM: ${{ steps.vim.outputs.executable }}
         run: |
-          ./vim-themis/bin/themis -r
+          ./vim-themis/bin/themis -r ./test
