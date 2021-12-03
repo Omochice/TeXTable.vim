@@ -28,7 +28,10 @@ function! s:csv_to_table(text, sep) abort
   " Fit length to longest one
   let l:n_columns = max(map(copy(l:table), {_, v -> len(v)}))
   " Convert tex table contents
-  call map(l:table, {_, v -> join(v, ' & ') . ' \\ \hline'})
+  " 1. Fit length of content to longest one
+  " 2. join with ` & `
+  " 3. add \\ \hline to tail
+  call map(l:table, {_, v -> join(v + repeat([''], l:n_columns-len(v)), ' & ') . ' \\ \hline'})
   return l:table
 endfunction
 
