@@ -18,9 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout this
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: checkout themis
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: thinca/vim-themis
           path: vim-themis
